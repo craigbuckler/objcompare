@@ -1,0 +1,14 @@
+logs
+*.log
+npm-debug.log*
+
+package-lock.json
+node_modules
+.npm
+.ash_history
+.node_repl_history
+
+build
+
+.DS_Store
+Thumbs.db

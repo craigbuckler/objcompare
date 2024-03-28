@@ -1,0 +1,69 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+  font: inherit;
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  -moz-text-size-adjust: none;
+  -webkit-text-size-adjust: none;
+  text-size-adjust: none;
+  image-rendering: -webkit-optimize-contrast;
+}
+
+html:focus-within {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: system-ui, sans-serif;
+  min-height: 100vh;
+  text-rendering: optimizeLegibility;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-size: 1em;
+  font-weight: normal;
+  line-height: 1.2;
+  text-wrap: balance;
+}
+
+a {
+  text-decoration-skip-ink: auto;
+  text-underline-offset: 0.15em;
+}
+
+a:link, a:visited {
+  color: var(--color-link1);
+}
+
+a:hover, a:focus, a:active {
+  color: var(--color-link2);
+}
+
+strong {
+  font-weight: bold;
+}
+
+img, picture {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/* disable animations */
+@media (prefers-reduced-motion: reduce) {
+
+  html:focus-within {
+   scroll-behavior: auto;
+  }
+
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+}

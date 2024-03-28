@@ -1,0 +1,35 @@
+{
+  "name": "objcompare",
+  "version": "1.0.0",
+  "description": "Compare object values set in JSON or YAML.",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "clean": "rm -rf ./build/*",
+    "start": "npm run clean && node --no-warnings --env-file=.env.dev ./esbuild.config.js",
+    "build": "npm run clean && node --no-warnings --env-file=.env.dev --env-file=.env.prod ./esbuild.config.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/craigbuckler/objcompare.git"
+  },
+  "keywords": [
+    "object",
+    "data",
+    "json",
+    "yaml",
+    "compare"
+  ],
+  "author": "Craig Buckler",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/craigbuckler/objcompare/issues"
+  },
+  "homepage": "https://github.com/craigbuckler/objcompare#readme",
+  "devDependencies": {
+    "esbuild": "^0.20.2",
+    "js-yaml": "^4.1.0",
+    "microdiff": "^1.4.0"
+  }
+}

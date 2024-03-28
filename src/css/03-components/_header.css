@@ -1,0 +1,6 @@
+header {
+  padding-block: 0.5em;
+  padding-inline: 1em;
+  color: var(--color-back1);
+  background-color: var(--color-fore1);
+}

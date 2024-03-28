@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Object Compare</title>
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<script type="module" src="./js/main.js"></script>
+<link rel="stylesheet" href="./css/main.css" />
+</head>
+<body>
+
+  <header>
+    <h1>Object Compare</h1>
+  </header>
+
+  <main>
+
+    <textarea id="dataold" data-name="initial data">{
+  example: {
+    msg: "Paste JSON or YAML here",
+    a: 1,
+    b: 2,
+    c: "three"
+  }
+}</textarea>
+
+    <textarea id="datanew" data-name="updated data">example:
+  msg: Paste JSON or YAML here
+  a: 1
+  c: 3
+  d: new</textarea>
+
+    <div id="diff">
+      <h2>Differences</h2>
+      <table>
+        <tbody></tbody>
+        <tfoot id="nochange">
+          <tr><td>none found</td></tr>
+        </tfoot>
+      </table>
+    </div>
+
+  </main>
+
+</body>
+</html>

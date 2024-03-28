@@ -1,0 +1,31 @@
+h1 {
+  font-size: clamp(1.2em, 1em + 0.5vw, 2rem);
+}
+
+p {
+  font-size: clamp(1em, 0.8em + 0.5vw, 1.5rem);
+}
+
+table {
+  width: 100%;
+  font-variant-numeric: tabular-nums;
+  border-spacing: 0;
+	border-collapse: collapse;
+	empty-cells: show;
+}
+
+td {
+  text-align: left;
+	vertical-align: top;
+  padding-block: 0.25em;
+  padding-inline: 0.5em 2em;
+}
+
+tr {
+
+  &.error { color: var(--color-error1); background-color: var(--color-error2); }
+  &.remove { background-color: var(--color-remove); }
+  &.change { background-color: var(--color-change); }
+  &.create { background-color: var(--color-create); }
+
+}

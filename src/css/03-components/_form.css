@@ -1,0 +1,45 @@
+main {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1em;
+  margin: 1em;
+}
+
+textarea, #diff {
+  font-family: Consolas, "SF Mono", "DejaVu Sans Mono", "Roboto Mono", monospace;
+  border: 1px solid var(--color-fore1);
+  border-radius: 3px;
+  outline: 0 none;
+}
+
+textarea {
+  min-height: 12em;
+  resize: vertical;
+  overflow: auto;
+
+  &:focus {
+    background-color: var(--color-back2);
+  }
+}
+
+textarea, #diff h2 {
+  display: block;
+  padding-block: 0.25em;
+  padding-inline: 0.5em;
+}
+
+textarea.error {
+  color: var(--color-error1);
+  background-color: var(--color-error2);
+  border-color: var(--color-error1);
+}
+
+#diff {
+  height: auto;
+  grid-column: span 2;
+
+  h2 {
+    color: var(--color-back1);
+    background-color: var(--color-fore1);
+  }
+}

@@ -1,0 +1,19 @@
+:root {
+
+  /* foreground colours */
+  --color-fore1: #030405;
+
+  /* background colours */
+  --color-back1: #fff;
+  --color-back2: #dde;
+
+  /* diff colours */
+  --color-remove: #f99;
+  --color-change: #99f;
+  --color-create: #9f9;
+
+  /* error */
+  --color-error1: #c00;
+  --color-error2: #fdd;
+
+}
