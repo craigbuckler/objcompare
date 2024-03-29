@@ -9,14 +9,28 @@ const dom = {
   nochange
 };
 
+// sort values
+const typeOrder = {
+  remove: 0,
+  change: 1,
+  create: 2
+};
+
 for (let d in dom) {
   if (typeof dom[d] === 'string') {
     dom[d] =  document.querySelector(dom[d]);
   }
 }
 
-let dOld, dNew;
+// restore session value
+const
+  vOld = sessionStorage.getItem(dom.dataold.id),
+  vNew = sessionStorage.getItem(dom.datanew.id);
 
+if (vOld) dom.dataold.value = vOld;
+if (vNew) dom.datanew.value = vNew;
+
+let dOld, dNew;
 dom.dataold.addEventListener('input', getDiff);
 dom.datanew.addEventListener('input', getDiff);
 
@@ -35,16 +49,29 @@ function getDiff(e) {
 
     showResult(
 
-      diff(dOld, dNew).map(d => ({
+      diff(dOld, dNew)
+        .map(d => {
 
-        type: d.type.toLowerCase(),
-        msg: [d.type, d.path.join(' . '),
-          (d.oldValue ? d.oldValue + ' (' + typeof d.oldValue + ')' : '') +
-          (d.type === 'CHANGE' ? ' 🡆 ' : '') +
-          (d.value ? d.value + ' (' + typeof d.value + ')' : '')
-        ]
+          let
+            dOld = d.oldValue && getDef(d.oldValue),
+            dNew = d.value && getDef(d.value);
 
-      }))
+          return {
+
+            type: d.type.toLowerCase(),
+            msg: [
+              d.type, d.path.join(' . '),
+              (dOld ? `${ dOld.str } (${ dOld.type })` : '') +
+                (d.type === 'CHANGE' ? ' 🡆 ' : '') +
+                (dNew ? `${ dNew.str } (${ dNew.type })` : '')
+            ]
+
+          };
+        })
+        .sort((a, b) => (
+          ( typeOrder[a.type] - typeOrder[b.type] ) ||
+          ( a.msg[1] === b.msg[1] ? 0 : a.msg[1] > b.msg[1] ? 1 : -1 )
+        ))
 
     );
 
@@ -87,14 +114,21 @@ function toObject(element) {
     element.classList.add(eClass);
   }
 
-  // show errors
   if (err) {
+
+    // show errors
     showResult([
       {
         type: 'error',
         msg: ['ERROR', element.dataset.name || '', err]
       }
     ]);
+  }
+  else {
+
+    // store session value
+    if (str && element.id) sessionStorage.setItem(element.id, str);
+
   }
 
   return obj;
@@ -135,5 +169,30 @@ function showResult(data) {
   });
 
   dom.result.appendChild(frag);
+
+}
+
+
+// get object string and type
+function getDef(val) {
+
+  let
+    str = val && String(val),
+    type = val && typeof val;
+
+  if (type === 'string') {
+    str = `"${ str }"`;
+  }
+
+  if (type === 'object' && Array.isArray(val)) {
+    type = 'array';
+    str = `[${ str }]`;
+  }
+
+  if (str.includes('object')) {
+    str = type === 'array' ? '[...]' : '{...}';
+  }
+
+  return { str, type };
 
 }
